@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="ТехноМаркет — каталог электроники и техники. Актуальные цены и наличие уточняйте перед заказом.">
+<title>ТехноМаркет — электроника и техника</title>
+<style>
+:root{--navy:#101b35;--blue:#2563eb;--cyan:#38bdf8;--ink:#172033;--muted:#64748b;--bg:#f4f7fb;--line:#e4eaf2}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+header{background:linear-gradient(120deg,#101b35,#173c76);color:white;padding:26px max(20px,calc((100% - 1200px)/2)) 24px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}.brand{font-size:27px;font-weight:850;letter-spacing:.2px}.brand span{color:#67d5ff}.tag{color:#d7e7ff;font-size:13px}
+.hero{padding:30px 0 12px;max-width:720px}.hero h1{font-size:clamp(27px,4vw,42px);line-height:1.1;margin:0 0 12px}.hero p{margin:0;color:#d7e7ff}
+main{max-width:1200px;margin:26px auto;padding:0 20px}.notice{background:#fff8e7;border:1px solid #f4dfaa;color:#795b18;border-radius:12px;padding:12px 15px;margin-bottom:18px;font-size:13px}
+.toolbar{display:grid;grid-template-columns:1fr 220px 180px;gap:10px;background:white;padding:14px;border:1px solid var(--line);border-radius:16px;margin-bottom:18px;box-shadow:0 5px 20px #10264a08}
+input,select{width:100%;border:1px solid #d7dfeb;border-radius:10px;padding:12px 13px;background:white;color:var(--ink);font:inherit;outline:none}input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2563eb18}
+.meta{display:flex;justify-content:space-between;align-items:center;margin:14px 2px;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card{background:white;border:1px solid var(--line);border-radius:15px;padding:16px;display:flex;flex-direction:column;min-height:205px;box-shadow:0 4px 18px #10264a06}
+.thumb{height:150px;border-radius:10px;background:linear-gradient(135deg,#eef5ff,#e8f7ff);display:grid;place-items:center;color:#2864c7;font-size:28px;margin-bottom:13px;overflow:hidden;position:relative}
+.thumb img{width:100%;height:100%;object-fit:contain;background:#fff}
+.photo-link{display:inline-block;margin-top:6px;color:#2563eb;font-size:12px;text-decoration:none}
+.photo-link:hover{text-decoration:underline}
+.cat{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#4771ad;font-weight:750}
+.name{font-size:14px;font-weight:650;line-height:1.4;margin:7px 0 12px;flex:1}
+.bottom{display:flex;justify-content:space-between;align-items:end;gap:8px}.price{font-size:19px;font-weight:850;color:#142d59;white-space:nowrap}.stock{font-size:11px;color:var(--muted);text-align:right}
+.pages{display:flex;justify-content:center;align-items:center;gap:12px;padding:24px 0 40px}.pages button{border:0;border-radius:9px;background:var(--navy);color:white;padding:10px 16px;font:inherit;cursor:pointer}.pages button:disabled{opacity:.35;cursor:default}
+.empty{background:white;border:1px dashed #cbd5e1;border-radius:14px;padding:40px;text-align:center;color:var(--muted);grid-column:1/-1}
+footer{background:#101b35;color:#c7d5eb;padding:24px max(20px,calc((100% - 1200px)/2));font-size:13px}
+
+.cartbar{display:flex;align-items:center;gap:10px}.cartbtn,.buybtn,.primary{border:0;border-radius:10px;background:#38bdf8;color:#09203d;padding:11px 16px;font:700 14px inherit;cursor:pointer}.cartbtn{background:#fff;color:#142d59}.buybtn{width:100%;margin-top:12px;background:#2563eb;color:#fff}.cartbtn:hover,.buybtn:hover,.primary:hover{filter:brightness(.96)}
+.drawer{position:fixed;inset:0;background:#0b173b88;z-index:20;display:none;justify-content:flex-end}.drawer.open{display:flex}.panel{width:min(520px,100%);height:100%;overflow:auto;background:#fff;padding:22px;box-shadow:-12px 0 40px #0002}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.panelhead h2{margin:0}.close{border:0;background:#eef2f8;border-radius:9px;padding:8px 12px;cursor:pointer;font-size:18px}.cartrow{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.cartrow img{width:64px;height:64px;object-fit:contain;border:1px solid var(--line);border-radius:8px}.qty{display:flex;align-items:center;gap:8px;margin-top:6px}.qty button{border:1px solid var(--line);background:white;border-radius:7px;padding:3px 9px;cursor:pointer}.remove{border:0;background:transparent;color:#b42318;cursor:pointer}.total{display:flex;justify-content:space-between;font-size:19px;font-weight:800;padding:18px 0}.checkout{display:grid;gap:11px;margin-top:14px}.checkout label{font-size:13px;font-weight:650;color:#334155}.checkout input,.checkout select{margin-top:5px}.suggest-wrap{position:relative}.suggestions{display:none;position:absolute;z-index:30;top:100%;left:0;right:0;max-height:260px;overflow:auto;background:#fff;border:1px solid #cbd5e1;border-radius:10px;box-shadow:0 12px 28px #10264a20}.suggestions.open{display:block}.suggestions button{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #edf1f6;background:#fff;padding:10px 12px;color:#172033;cursor:pointer;font:inherit}.suggestions button:hover{background:#eff6ff}.suggestions small{display:block;color:#64748b;font-size:12px}.field-note{font-size:12px;color:#64748b;margin-top:4px}.checkout .hint{font-size:12px;color:var(--muted);font-weight:400}.checkout button{width:100%;padding:13px}.success{padding:14px;border-radius:10px;background:#ecfdf3;color:#17643a;margin:12px 0}.error{padding:14px;border-radius:10px;background:#fff1f0;color:#a12622;margin:12px 0}.cartempty{text-align:center;padding:38px 10px;color:var(--muted)}.fineprint{font-size:11px;color:var(--muted);line-height:1.45}
+@media(max-width:680px){.cartbar{width:100%;justify-content:space-between}.top{align-items:flex-start}.panel{padding:16px}}
+
+@media(max-width:950px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:680px){.toolbar{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:12px}.price{font-size:17px}.hero{padding-top:24px}}
+@media(max-width:390px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="brand">Техно<span>Маркет</span></div><div class="cartbar"><div class="tag">Электроника · техника · полезные гаджеты</div><button class="cartbtn" id="openCart">Корзина <span id="cartCount">0</span></button></div></div>
+<div class="hero"><h1>Технологии для каждого дня</h1><p>Выбирайте технику в каталоге. Перед оплатой уточняйте актуальную цену и наличие.</p></div></header>
+<main>
+<div class="notice">Цены и наличие взяты из прайса поставщика и могут изменяться. Перед отправкой заказ подтверждается продавцом. Онлайн-оплата проводится только после подтверждения заказа и получения платёжной ссылки.</div>
+<section class="toolbar">
+<input id="q" type="search" placeholder="Поиск по названию или артикулу…">
+<select id="category"><option value="">Все категории</option></select>
+<select id="sort"><option value="popular">Сначала по умолчанию</option><option value="low">Сначала дешевле</option><option value="high">Сначала дороже</option><option value="name">По названию</option></select>
+</section>
+<div class="meta"><span id="count">Загрузка каталога…</span><span id="pageinfo"></span></div>
+<section class="grid" id="grid"></section>
+<div class="pages"><button id="prev">Назад</button><span id="pagestr"></span><button id="next">Далее</button></div>
+</main>
+<div class="drawer" id="cartDrawer" aria-hidden="true"><section class="panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle"><div class="panelhead"><h2 id="cartTitle">Корзина и оформление</h2><button class="close" id="closeCart" aria-label="Закрыть">×</button></div><div id="cartContents"></div><div id="checkoutArea"></div></section></div>
+<footer><strong>ТехноМаркет</strong><br>Каталог электроники и техники. Цены указаны в гривнах. Информация требует подтверждения у продавца.</footer>
+<script>
+const PAGE=32; let all=[], filtered=[], page=1; const cart=new Map();
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat('uk-UA').format(n)+' ₴';
+function render(){
+ const start=(page-1)*PAGE, rows=filtered.slice(start,start+PAGE);
+ $('grid').innerHTML=rows.length?rows.map(p=>{
+ const image=typeof p.image==='string' && /^https:\/\//i.test(p.image) ? p.image : '';
+ const query=encodeURIComponent((p.name||'')+' '+(p.sku||''));
+ const photo=image?`<img src="${esc(image)}" alt="${esc(p.name)}" loading="lazy" onerror="this.parentElement.innerHTML='✦'">`:`✦`;
+ return `<article class="card"><div class="thumb">${photo}</div><div class="cat">${esc(p.category)}</div><div class="name">${esc(p.name)}</div><a class="photo-link" href="https://www.google.com/search?tbm=isch&q=${query}" target="_blank" rel="noopener noreferrer">Найти фотографию ↗</a><div class="bottom"><div class="price">${money(p.price)}</div><div class="stock">${p.stock>0?'По прайсу: '+p.stock+' шт.':'Наличие уточняйте'}<br>Арт. ${esc(p.sku)}</div></div><button class="buybtn" data-buy="${esc(p.sku)}">В корзину</button></article>`;
+}).join(''):'<div class="empty">По вашему запросу ничего не найдено.</div>';
+ const total=Math.max(1,Math.ceil(filtered.length/PAGE));
+ $('count').textContent=`Найдено товаров: ${filtered.length.toLocaleString('uk-UA')}`;
+ $('pageinfo').textContent=`Страница ${page} из ${total}`;
+ $('pagestr').textContent=`${start+1}–${Math.min(start+PAGE,filtered.length)} из ${filtered.length}`;
+ $('prev').disabled=page<=1; $('next').disabled=page>=total;
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function apply(){
+ const q=$('q').value.trim().toLowerCase(), cat=$('category').value, sort=$('sort').value;
+ filtered=all.filter(p=>(!cat||p.category===cat)&&(!q||(p.name+' '+p.sku).toLowerCase().includes(q)));
+ if(sort==='low')filtered.sort((a,b)=>a.price-b.price);
+ if(sort==='high')filtered.sort((a,b)=>b.price-a.price);
+ if(sort==='name')filtered.sort((a,b)=>a.name.localeCompare(b.name,'uk'));
+ page=1;render();
+}
+['q','category','sort'].forEach(id=>$(id).addEventListener(id==='q'?'input':'change',apply));
+$('prev').onclick=()=>{page--;render();window.scrollTo({top:250,behavior:'smooth'})};
+$('next').onclick=()=>{page++;render();window.scrollTo({top:250,behavior:'smooth'})};
+function cartItems(){return [...cart.entries()].map(([sku,qty])=>({p:all.find(x=>String(x.sku)===sku),qty})).filter(x=>x.p)}
+function cartTotal(){return cartItems().reduce((sum,x)=>sum+x.p.price*x.qty,0)}
+function updateCart(){const n=[...cart.values()].reduce((a,b)=>a+b,0);$('cartCount').textContent=n;$('cartContents').innerHTML=cartItems().length?cartItems().map(({p,qty})=>`<div class="cartrow"><img src="${esc(p.image||'')}" alt="" onerror="this.style.visibility='hidden'"><div><strong>${esc(p.name)}</strong><div class="hint">${money(p.price)} · арт. ${esc(p.sku)}</div><div class="qty"><button data-qty="${esc(p.sku)}" data-delta="-1">−</button><span>${qty}</span><button data-qty="${esc(p.sku)}" data-delta="1">+</button><button class="remove" data-remove="${esc(p.sku)}">Удалить</button></div></div><strong>${money(p.price*qty)}</strong></div>`).join(''):'<div class="cartempty">Корзина пока пустая.<br>Добавьте товары из каталога.</div>';
+$('checkoutArea').innerHTML=cartItems().length?`<div class="total"><span>Итого</span><span>${money(cartTotal())}</span></div><form class="checkout" id="orderForm"><label>Ваше имя<input name="name" required maxlength="80" autocomplete="name" placeholder="Имя и фамилия"></label><label>Телефон<input name="phone" required type="tel" maxlength="30" autocomplete="tel" placeholder="+380…"></label><label>Город доставки<div class="suggest-wrap"><input name="city" id="npCity" required maxlength="100" autocomplete="off" placeholder="Начните вводить город"><div class="suggestions" id="npCitySuggestions"></div></div><div class="field-note" id="npCityNote">Выберите город из подсказок Новой почты.</div></label><label>Служба доставки<select name="delivery" id="deliverySelect" required><option value="Новая почта">Новая почта</option><option value="Укрпочта">Укрпочта</option><option value="Самовывоз">Самовывоз (если доступен)</option></select></label><label>Отделение или адрес<div class="suggest-wrap"><input name="branch" id="npBranch" required maxlength="180" autocomplete="off" placeholder="Номер, улица или адрес отделения" disabled><div class="suggestions" id="npBranchSuggestions"></div></div><div class="field-note" id="npBranchNote">Сначала выберите город.</div></label><label>Способ оплаты<select name="payment"><option value="При получении">Оплата при получении</option><option value="Онлайн после подтверждения">Онлайн по ссылке после подтверждения заказа</option></select></label><label><span><input type="checkbox" name="consent" required style="width:auto;margin-right:8px">Согласен(на) на обработку данных для связи и доставки заказа</span></label><div class="fineprint">Отправляя заказ, вы передаёте продавцу контактные данные для обработки заказа. Цена и наличие окончательно подтверждаются продавцом. Онлайн-платёжный сервис пока не подключён: ссылка на оплату отправляется отдельно после подтверждения.</div><button class="primary" type="submit" id="submitOrder">Отправить заказ</button><div id="orderMessage" aria-live="polite"></div></form>`:'';
+}
+$('openCart').onclick=()=>{$('cartDrawer').classList.add('open');$('cartDrawer').setAttribute('aria-hidden','false');updateCart()};
+$('closeCart').onclick=()=>{$('cartDrawer').classList.remove('open');$('cartDrawer').setAttribute('aria-hidden','true')};
+$('cartDrawer').addEventListener('click',e=>{if(e.target===$('cartDrawer'))$('closeCart').click()});
+$('grid').addEventListener('click',e=>{const b=e.target.closest('[data-buy]');if(!b)return;const sku=String(b.dataset.buy),p=all.find(x=>String(x.sku)===sku);if(p){cart.set(sku,Math.min((cart.get(sku)||0)+1,99));updateCart();b.textContent='Добавлено ✓';setTimeout(()=>b.textContent='В корзину',1000)}});
+$('cartContents').addEventListener('click',e=>{const q=e.target.closest('[data-qty]'),r=e.target.closest('[data-remove]');if(q){const sku=q.dataset.qty,n=(cart.get(sku)||0)+Number(q.dataset.delta);if(n<=0)cart.delete(sku);else cart.set(sku,Math.min(n,99));updateCart()}if(r){cart.delete(r.dataset.remove);updateCart()}});
+$('checkoutArea').addEventListener('submit',async e=>{if(e.target.id!=='orderForm')return;e.preventDefault();const form=e.target,btn=$('submitOrder'),msg=$('orderMessage');btn.disabled=true;btn.textContent='Отправляем…';msg.textContent='';const fd=new FormData(form);if(fd.get('delivery')==='Новая почта'&&(!window.npSelectedCity||!window.npSelectedBranch)){btn.disabled=false;btn.textContent='Отправить заказ';msg.className='error';msg.textContent='Для Новой почты выберите город и отделение из выпадающих подсказок.';return}const payload={customer:{name:fd.get('name'),phone:fd.get('phone'),city:fd.get('city'),cityRef:window.npSelectedCity?.ref||'',delivery:fd.get('delivery'),branch:fd.get('branch'),branchRef:window.npSelectedBranch?.ref||'',payment:fd.get('payment')},items:cartItems().map(({p,qty})=>({sku:p.sku,name:p.name,price:p.price,quantity:qty})),total:cartTotal(),consent:fd.get('consent')==='on'};try{const res=await fetch('/.netlify/functions/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const result=await res.json();if(!res.ok)throw Error(result.error||'Не удалось отправить заказ');cart.clear();$('cartCount').textContent='0';$('cartContents').innerHTML='<div class="cartempty">Заказ принят в обработку.</div>';$('checkoutArea').innerHTML='<div class="success">Заказ отправлен! Продавец свяжется с вами для подтверждения.</div>';}catch(err){msg.className='error';msg.textContent=err.message.includes('Настройте')?'Приём заказов ещё не настроен. Свяжитесь с продавцом напрямую.':'Не удалось отправить заказ. Попробуйте позже или свяжитесь с продавцом.';}finally{btn.disabled=false;btn.textContent='Отправить заказ'}});
+// Nova Poshta city and branch autocomplete.
+// Checkout fields are created only when the cart is opened, so use delegated events.
+window.npSelectedCity=null; window.npSelectedBranch=null;
+let cityTimer=null, branchTimer=null, cityRequest=0, branchRequest=0;
+function showSuggestions(box, items, onPick){
+ box.innerHTML='';
+ if(!items.length){box.classList.remove('open');return;}
+ items.forEach(item=>{const b=document.createElement('button');b.type='button';b.innerHTML=`${esc(item.title)}${item.subtitle?`<small>${esc(item.subtitle)}</small>`:''}`;b.addEventListener('click',()=>{onPick(item);box.classList.remove('open')});box.append(b)});
+ box.classList.add('open');
+}
+async function npLookup(params){const qs=new URLSearchParams(params);const r=await fetch('/.netlify/functions/nova-poshta?'+qs.toString());const data=await r.json();if(!r.ok)throw new Error(data.error||'Ошибка поиска');return data.items||[];}
+document.addEventListener('input',e=>{
+ if(e.target.id==='npCity'){
+  const cityInput=e.target, branchInput=$('npBranch'), cityBox=$('npCitySuggestions'), branchBox=$('npBranchSuggestions');
+  const q=cityInput.value.trim();window.npSelectedCity=null;window.npSelectedBranch=null;
+  if(branchInput){branchInput.value='';branchInput.disabled=true;}
+  if($('npBranchNote'))$('npBranchNote').textContent='Сначала выберите город.';
+  if($('npCityNote'))$('npCityNote').textContent='Выберите город из подсказок Новой почты.';
+  clearTimeout(cityTimer);cityBox?.classList.remove('open');branchBox?.classList.remove('open');
+  if(q.length<2)return;
+  cityTimer=setTimeout(async()=>{const req=++cityRequest;try{const items=await npLookup({type:'cities',q});if(req===cityRequest&&cityInput.value.trim()===q)showSuggestions(cityBox,items,item=>{window.npSelectedCity=item;cityInput.value=item.title;branchInput.disabled=false;$('npCityNote').textContent='Город выбран.';$('npBranchNote').textContent='Введите номер отделения, улицу или часть адреса.';branchInput.focus()});}catch(e){$('npCityNote').textContent='Не удалось загрузить города. Попробуйте позже.'}},250);
+ }
+ if(e.target.id==='npBranch'){
+  const branchInput=e.target, branchBox=$('npBranchSuggestions'), q=branchInput.value.trim();window.npSelectedBranch=null;clearTimeout(branchTimer);branchBox.classList.remove('open');$('npBranchNote').textContent='Выберите отделение из подсказок.';
+  if(!window.npSelectedCity||q.length<1)return;
+  branchTimer=setTimeout(async()=>{const req=++branchRequest;try{const items=await npLookup({type:'warehouses',cityRef:window.npSelectedCity.ref,q});if(req===branchRequest&&branchInput.value.trim()===q)showSuggestions(branchBox,items,item=>{window.npSelectedBranch=item;branchInput.value=item.title;$('npBranchNote').textContent='Отделение выбрано.'});}catch(e){$('npBranchNote').textContent='Не удалось загрузить отделения. Попробуйте позже.'}},250);
+ }
+});
+document.addEventListener('change',e=>{
+ if(e.target.id!=='deliverySelect')return;
+ const isNP=e.target.value==='Новая почта', cityInput=$('npCity'), branchInput=$('npBranch');
+ if(!cityInput||!branchInput)return;
+ cityInput.required=isNP;branchInput.required=true;cityInput.disabled=!isNP;branchInput.disabled=!isNP||!window.npSelectedCity;
+ if(!isNP){$('npCitySuggestions').classList.remove('open');$('npBranchSuggestions').classList.remove('open');$('npCityNote').textContent='Для другой службы доставки укажите город вручную.';$('npBranchNote').textContent='Укажите отделение или адрес вручную.'}
+ else{$('npCityNote').textContent='Выберите город из подсказок Новой почты.';$('npBranchNote').textContent=window.npSelectedCity?'Введите номер или адрес отделения.':'Сначала выберите город.'}
+});
+document.addEventListener('click',e=>{const c=$('npCitySuggestions'),b=$('npBranchSuggestions');if(c&&!c.parentElement.contains(e.target))c.classList.remove('open');if(b&&!b.parentElement.contains(e.target))b.classList.remove('open')});
+fetch('./products.json').then(r=>{if(!r.ok)throw Error('Не удалось загрузить каталог');return r.json()}).then(data=>{
+ all=data; [...new Set(all.map(p=>p.category))].sort().forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;$('category').append(o)});
+ apply();
+}).catch(e=>{$('grid').innerHTML='<div class="empty">Не удалось загрузить товары. Проверьте, что файл products.json размещён рядом с index.html.</div>';$('count').textContent='Ошибка загрузки';});
+</script>
+</body></html>
